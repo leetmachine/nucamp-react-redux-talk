@@ -25,9 +25,7 @@ class App extends React.Component {
     const { user } = this.props;
     return (
       <div>
-        <Header user={user} />
-        <button onClick={this.props.login}>login</button>
-        <button onClick={this.props.logout}>logout</button>
+        <Header user={user} login={this.props.login} logout={this.props.logout}/>
       </div>
     )
   }
