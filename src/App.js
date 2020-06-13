@@ -1,31 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
-
-/*ACTIONS */
-function login() {
-  console.log('logging in...');
-  return {
-    type: 'LOGIN_USER',
-    payload: {name: 'Keegan'}
-  }
-}
-
-function logout() {
-  return {
-    type: 'LOGOUT_USER'
-  }
-}
-
+import Dashboard from './Dashboard';
 
 class App extends React.Component {
 
   render() {
-
     const { user } = this.props;
     return (
       <div>
-        <Header user={user} login={this.props.login} logout={this.props.logout}/>
+        <Header />
+        {user ? <Dashboard /> : <h3>no user</h3>}
       </div>
     )
   }
@@ -34,16 +19,8 @@ class App extends React.Component {
 function mapStateToProps(state) {
 
   return {
-    user: state.user
+    user: state.user,
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    login: () => dispatch(login()),
-    logout: () => dispatch(logout()),
-  }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
