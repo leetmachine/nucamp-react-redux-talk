@@ -1,26 +1,51 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+/*ACTIONS */
+function login() {
+  console.log('logging in...');
+  return {
+    type: 'LOGIN_USER',
+    payload: {name: 'Keegan'}
+  }
 }
 
-export default App;
+function logout() {
+  return {
+    type: 'LOGOUT_USER'
+  }
+}
+
+
+class App extends React.Component {
+
+  render() {
+
+    const { user } = this.props;
+
+    return (
+      <div>
+        <h1>{user ? user.name : 'not logged in'}</h1>
+        <button onClick={this.props.login}>login</button>
+        <button onClick={this.props.logout}>logout</button>
+      </div>
+    )
+  }
+}
+
+function mapStateToProps(state) {
+
+  return {
+    user: state.user
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    login: () => dispatch(login()),
+    logout: () => dispatch(logout()),
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
