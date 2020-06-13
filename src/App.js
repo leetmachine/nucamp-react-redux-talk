@@ -2,7 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
 
-/*ACTIONS */
+/*ACTIONS 
+if you intend to update the REDUX STORE
+all you need is a function that returns exactly:
+{ type: 'A_KEY_YOU_DEFINED', payload?: optional, any value you intend to use }
+*/
 function login() {
   console.log('logging in...');
   return {
@@ -17,11 +21,9 @@ function logout() {
   }
 }
 
-
 class App extends React.Component {
 
   render() {
-
     const { user } = this.props;
     return (
       <div>
