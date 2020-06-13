@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Header from './Header';
 
 /*ACTIONS */
 function login() {
@@ -22,10 +23,9 @@ class App extends React.Component {
   render() {
 
     const { user } = this.props;
-
     return (
       <div>
-        <h1>{user ? user.name : 'not logged in'}</h1>
+        <Header user={user} />
         <button onClick={this.props.login}>login</button>
         <button onClick={this.props.logout}>logout</button>
       </div>
