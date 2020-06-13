@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
+<<<<<<< HEAD
 
 /*ACTIONS 
 if you intend to update the REDUX STORE
@@ -20,6 +21,9 @@ function logout() {
     type: 'LOGOUT_USER'
   }
 }
+=======
+import Dashboard from './Dashboard';
+>>>>>>> added-dashboard
 
 class App extends React.Component {
 
@@ -27,7 +31,8 @@ class App extends React.Component {
     const { user } = this.props;
     return (
       <div>
-        <Header user={user} login={this.props.login} logout={this.props.logout}/>
+        <Header />
+        {user ? <Dashboard /> : <h3>no user</h3>}
       </div>
     )
   }
@@ -36,16 +41,8 @@ class App extends React.Component {
 function mapStateToProps(state) {
 
   return {
-    user: state.user
+    user: state.user,
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    login: () => dispatch(login()),
-    logout: () => dispatch(logout()),
-  }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);
